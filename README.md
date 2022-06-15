@@ -7,7 +7,7 @@ Apartados
 
 - CRUD Contactos
 - Ordenar por nombre
-- La foto se puede agregar despues de dar de alta al contacto en el popup menu
+- La foto se puede agregar despues de dar de alta al contacto, en el popup menu del contacto
 
 Faltantes  
 - Persistencia del ultimo ordenamiento 
