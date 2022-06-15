@@ -2,5 +2,5 @@
 Android 11
 
 Faltantes
-Persistencia del ultimo ordenamiento 
-Ordenamiento manual
+- Persistencia del ultimo ordenamiento 
+- Ordenamiento manual
