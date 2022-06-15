@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Agenda</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="editar_foto">Editar foto</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar información</string>
+</resources>
