@@ -116,6 +116,13 @@ public class MainContactos extends AppCompatActivity implements ContactosInterfa
         mainContactosViewModel.eliminarContacto(idContacto);
     }
 
+    @Override
+    public void detalles(Contactos contacto) {
+        DetallesContacto formularioDialogoDetalles = new DetallesContacto(contacto);
+        formularioDialogoDetalles.setCancelable(false);
+        formularioDialogoDetalles.show(getSupportFragmentManager(),"detalles");
+    }
+
     private void dispatchTakePictureIntent() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_CAMERA_REQUEST_CODE);

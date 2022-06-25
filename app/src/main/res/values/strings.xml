@@ -5,4 +5,7 @@
     <string name="editar_foto">Editar foto</string>
     <string name="eliminar">Eliminar</string>
     <string name="editar">Editar información</string>
+    <string name="detalles_contacto">Detalles Contacto</string>
+    <string name="cerrar_button">Cerrar</string>
+    <string name="detalles">Detalles</string>
 </resources>

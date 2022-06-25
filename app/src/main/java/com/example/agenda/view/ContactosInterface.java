@@ -8,4 +8,5 @@ public interface ContactosInterface {
     void actualizarContacto(int index, Contactos contacto);
     void actualizarFoto(int index, Contactos contacto);
     void eliminarFoto(int index, int idContacto);
+    void detalles(Contactos contacto);
 }

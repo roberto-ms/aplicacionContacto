@@ -15,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agenda.R;
 import com.example.agenda.model.Contactos;
+import com.example.agenda.view.AgregarContacto;
 import com.example.agenda.view.ContactosInterface;
+import com.example.agenda.view.DetallesContacto;
 
 import java.io.File;
 import java.util.List;
@@ -113,6 +115,8 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
                             case R.id.eliminar:
                                 eventoEdicionContacto.eliminarFoto(index, contacto.getId());
                                 break;
+                            case R.id.detalles:
+                                eventoEdicionContacto.detalles(contacto);
                         }
                         return false;
                     }
