@@ -16,4 +16,7 @@
     <item
         android:id="@+id/direccion"
         android:title="@string/direccion" />
+    <item
+        android:id="@+id/editar_direccion"
+        android:title="@string/editar_direccion" />
 </menu>

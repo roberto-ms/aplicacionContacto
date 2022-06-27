@@ -12,5 +12,6 @@ public interface ContactosInterface {
     void eliminarFoto(int index, int idContacto);
     void detalles(Contactos contacto);
     void formularioDireccion(Direcciones direccion,Contactos contacto);
-    void registrarDireccion(Direcciones direccion);
+    void formularioActualizarDireccion(Direcciones direccion,Contactos contacto);
+    void registrarDireccion(int tipo,Direcciones direccion);
 }

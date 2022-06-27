@@ -22,10 +22,13 @@ public class AgregarDireccion extends DialogFragment {
     private FragmentAgregarDireccionBinding agregarDireccionBinding;
     private int idContacto = 0;
     private Contactos contacto;
+    private int tipo;
 
-    public AgregarDireccion(ContactosInterface contactosInterface, Direcciones direccion, Contactos contacto) {
+    public AgregarDireccion(ContactosInterface contactosInterface, int tipo, Direcciones direccion, Contactos contacto) {
         this.contactosInterface = contactosInterface;
         this.contacto = contacto;
+        this.tipo = tipo;
+        this.direccion = direccion;
     }
 
     @Override
@@ -40,6 +43,16 @@ public class AgregarDireccion extends DialogFragment {
     }
 
     private void render() {
+        if (tipo != 0 && direccion != null) {
+            agregarDireccionBinding.txtEstado.setText(direccion.getEstado());
+            agregarDireccionBinding.txtMunicipio.setText(direccion.getMunicipio());
+            agregarDireccionBinding.txtLocalidad.setText(direccion.getLocalidad());
+            agregarDireccionBinding.txtColonia.setText(direccion.getColonia());
+            agregarDireccionBinding.txtCalle.setText(direccion.getCalle());
+            agregarDireccionBinding.txtNumeroInterior.setText(direccion.getNumeroInterior());
+            agregarDireccionBinding.toolbarTitle.setText("Actualizar Direccion");
+            agregarDireccionBinding.btnAgregar.setText("Actualizar");
+        }
         agregarDireccionBinding.btnAgregar.setOnClickListener(v -> {
             String estado = agregarDireccionBinding.txtEstado.getText().toString();
             String municipio = agregarDireccionBinding.txtMunicipio.getText().toString();
@@ -49,7 +62,7 @@ public class AgregarDireccion extends DialogFragment {
             String numeroInterior = agregarDireccionBinding.txtNumeroInterior.getText().toString();
             if (!estado.equals("") && !municipio.equals("") && !localidad.equals("") && !colonia.equals("") && !calle.equals("") && !numeroInterior.equals("")) {
                 dismiss();
-                contactosInterface.registrarDireccion(new Direcciones(0,contacto.getId(), estado, municipio, localidad, colonia, calle, numeroInterior));
+                contactosInterface.registrarDireccion(tipo,new Direcciones(0, (contacto != null) ? contacto.getId() : direccion.getId_contacto(), estado, municipio, localidad, colonia, calle, numeroInterior));
             } else {
                 Toast.makeText(getContext(), "Falta datos por llenar", Toast.LENGTH_LONG).show();
             }

@@ -121,6 +121,9 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
                             case R.id.direccion:
                                 eventoEdicionContacto.formularioDireccion(null, contacto);
                                 break;
+                            case R.id.editar_direccion:
+                                eventoEdicionContacto.formularioActualizarDireccion(direccion,contacto);
+                                break;
                         }
                         return false;
                     }

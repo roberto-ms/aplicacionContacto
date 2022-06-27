@@ -128,15 +128,28 @@ public class MainContactos extends AppCompatActivity implements ContactosInterfa
 
     @Override
     public void formularioDireccion(Direcciones direccion, Contactos contacto) {
-        AgregarDireccion formularioAgregarDireccion = new AgregarDireccion(this, direccion, contacto);
+        AgregarDireccion formularioAgregarDireccion = new AgregarDireccion(this, 0, direccion, contacto);
         formularioAgregarDireccion.show(getSupportFragmentManager(), "formulario");
     }
 
     @Override
-    public void registrarDireccion(Direcciones direccion) {
+    public void formularioActualizarDireccion(Direcciones direccion, Contactos contacto) {
         DireccionesRepository direccionesRepository = new DireccionesRepository(this);
-        direccion = direccionesRepository.registrarDireccion(direccion.getId_contacto(),direccion.getEstado(),direccion.getMunicipio(),direccion.getLocalidad(),direccion.getColonia(),direccion.getCalle(),direccion.getNumeroInterior());
-        System.out.println(direccion);
+        direccion = direccionesRepository.obtenerDireccion(contacto.getId());
+        System.out.println("CONTACTO " + contacto.getId());
+        AgregarDireccion formularioAgregarDireccion = new AgregarDireccion(this, 1, direccion, null);
+        formularioAgregarDireccion.show(getSupportFragmentManager(), "actualizar");
+    }
+
+    @Override
+    public void registrarDireccion(int tipo, Direcciones direccion) {
+        DireccionesRepository direccionesRepository = new DireccionesRepository(this);
+        if (tipo != 0) {
+            direccionesRepository.actualizarDireccion(direccion,direccion.getId_contacto());
+        } else {
+            direccionesRepository.registrarDireccion(direccion.getId_contacto(), direccion.getEstado(), direccion.getMunicipio(), direccion.getLocalidad(), direccion.getColonia(), direccion.getCalle(), direccion.getNumeroInterior());
+        }
+
     }
 
     private void dispatchTakePictureIntent() {
