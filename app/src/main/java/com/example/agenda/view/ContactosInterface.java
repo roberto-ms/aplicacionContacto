@@ -2,6 +2,8 @@ package com.example.agenda.view;
 
 
 import com.example.agenda.model.Contactos;
+import com.example.agenda.model.Direcciones;
+
 
 public interface ContactosInterface {
     void agregarEditarContacto(int tipo, Contactos contacto);
@@ -9,4 +11,6 @@ public interface ContactosInterface {
     void actualizarFoto(int index, Contactos contacto);
     void eliminarFoto(int index, int idContacto);
     void detalles(Contactos contacto);
+    void formularioDireccion(Direcciones direccion,Contactos contacto);
+    void registrarDireccion(Direcciones direccion);
 }

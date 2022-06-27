@@ -13,4 +13,7 @@
     <item
         android:id="@+id/detalles"
         android:title="@string/detalles" />
+    <item
+        android:id="@+id/direccion"
+        android:title="@string/direccion" />
 </menu>

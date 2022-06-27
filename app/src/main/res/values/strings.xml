@@ -8,4 +8,5 @@
     <string name="detalles_contacto">Detalles Contacto</string>
     <string name="cerrar_button">Cerrar</string>
     <string name="detalles">Detalles</string>
+    <string name="direccion">Direccion</string>
 </resources>

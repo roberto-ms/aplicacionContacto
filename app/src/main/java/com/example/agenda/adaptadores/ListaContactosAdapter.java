@@ -15,9 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.agenda.R;
 import com.example.agenda.model.Contactos;
-import com.example.agenda.view.AgregarContacto;
+import com.example.agenda.model.Direcciones;
 import com.example.agenda.view.ContactosInterface;
-import com.example.agenda.view.DetallesContacto;
 
 import java.io.File;
 import java.util.List;
@@ -75,6 +74,7 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
         private final TextView viewTelefono;
         private final ImageView fotoImageView;
         private final ImageView menuIcon;
+        private Direcciones direccion;
 
         public ContactoViewHolder(View itemView) {
             super(itemView);
@@ -117,6 +117,9 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
                                 break;
                             case R.id.detalles:
                                 eventoEdicionContacto.detalles(contacto);
+                            case R.id.direccion:
+                                eventoEdicionContacto.formularioDireccion(null,contacto);
+
                         }
                         return false;
                     }
@@ -125,5 +128,6 @@ public class ListaContactosAdapter extends RecyclerView.Adapter<ListaContactosAd
             });
 
         }
+
     }
 }

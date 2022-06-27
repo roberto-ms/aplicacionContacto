@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import com.example.agenda.repository.DireccionesRepository;
 
 import androidx.annotation.Nullable;
 
@@ -77,7 +78,6 @@ public class ContactosRepository extends DbHelper {
         db.close();
         return new Contactos(Math.toIntExact(id), nombre, apellidoPaterno, apellidoMaterno, telefono, "");
     }
-
 
     private boolean actualizarContactoPorId(String idContacto, ContentValues values) {
         int update = 0;
