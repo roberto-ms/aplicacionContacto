@@ -33,6 +33,7 @@ public class MainContactos extends AppCompatActivity implements ContactosInterfa
 
     private ActivityMainContactosBinding binding;
     private ContactosViewModel mainContactosViewModel;
+    private ContactosViewModel mainDireccionesViewModel;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private int index = 0;
     private Contactos currentContacto = null;
@@ -46,13 +47,12 @@ public class MainContactos extends AppCompatActivity implements ContactosInterfa
         binding = ActivityMainContactosBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         ContactosRepository mainContactosRepository = new ContactosRepository(this);
-        mainContactosViewModel = new ViewModelProvider(this, new ViewModelFactory(mainContactosRepository)).get(ContactosViewModel.class);
-
+        DireccionesRepository mainDireccionesRepository = new DireccionesRepository(this);
+        mainContactosViewModel = new ViewModelProvider(this, new ViewModelFactory(mainContactosRepository, mainDireccionesRepository)).get(ContactosViewModel.class);
         mainContactosViewModel.obtenerContactos().observe(this, this::mostrarContactos);
         mainContactosViewModel.obtenerAgregarEditarContacto().observe(this, this::updateItem);
         mainContactosViewModel.gobtenerDeleteContacto().observe(this, this::deleteContacto);
         mainContactosViewModel.cargarContactos(0);
-
         binding.btnAgregar.setOnClickListener(v -> {
             AgregarContacto formularioDialogo = new AgregarContacto(this, 1, null);
             formularioDialogo.setCancelable(false);
@@ -136,18 +136,19 @@ public class MainContactos extends AppCompatActivity implements ContactosInterfa
     public void formularioActualizarDireccion(Direcciones direccion, Contactos contacto) {
         DireccionesRepository direccionesRepository = new DireccionesRepository(this);
         direccion = direccionesRepository.obtenerDireccion(contacto.getId());
-        System.out.println("CONTACTO " + contacto.getId());
         AgregarDireccion formularioAgregarDireccion = new AgregarDireccion(this, 1, direccion, null);
         formularioAgregarDireccion.show(getSupportFragmentManager(), "actualizar");
     }
 
     @Override
     public void registrarDireccion(int tipo, Direcciones direccion) {
-        DireccionesRepository direccionesRepository = new DireccionesRepository(this);
+        //DireccionesRepository direccionesRepository = new DireccionesRepository(this);
         if (tipo != 0) {
-            direccionesRepository.actualizarDireccion(direccion,direccion.getId_contacto());
+            //direccionesRepository.actualizarDireccion(direccion, direccion.getId_contacto());
+            mainContactosViewModel.registrarActualizarDireccion(tipo,direccion,direccion.getId_contacto());
         } else {
-            direccionesRepository.registrarDireccion(direccion.getId_contacto(), direccion.getEstado(), direccion.getMunicipio(), direccion.getLocalidad(), direccion.getColonia(), direccion.getCalle(), direccion.getNumeroInterior());
+            //direccionesRepository.registrarDireccion(direccion.getId_contacto(), direccion.getEstado(), direccion.getMunicipio(), direccion.getLocalidad(), direccion.getColonia(), direccion.getCalle(), direccion.getNumeroInterior());
+            mainContactosViewModel.registrarActualizarDireccion(tipo,direccion,direccion.getId_contacto());
         }
 
     }

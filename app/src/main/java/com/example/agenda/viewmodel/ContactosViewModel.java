@@ -7,7 +7,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.agenda.model.Contactos;
+import com.example.agenda.model.Direcciones;
 import com.example.agenda.repository.ContactosRepository;
+import com.example.agenda.repository.DireccionesRepository;
 
 import java.util.List;
 
@@ -16,13 +18,22 @@ public class ContactosViewModel extends ViewModel {
     private MutableLiveData<List<Contactos>> contactosData;
     private MutableLiveData<Pair<Integer, Contactos>> agregarEditarContacto;
     private MutableLiveData<Boolean> deleteContacto;
+    private DireccionesRepository mainDireccionesRepository;
+    private MutableLiveData<List<Direcciones>> direccionesData;
+    private MutableLiveData<Pair<Integer, Direcciones>> agregarEditarDireccion;
+    private MutableLiveData<Boolean> deleteDireccion;
+    private MutableLiveData<Pair<Integer,Direcciones>> obtenerDireccionContacto;
 
-    public ContactosViewModel(ContactosRepository mainContactosRepository) {
-        this.mainContactosRepository = mainContactosRepository;
-        this.contactosData = new MutableLiveData<>();
-        this.agregarEditarContacto = new MutableLiveData<>();
-        this.deleteContacto = new MutableLiveData<>();
-
+    public ContactosViewModel(ContactosRepository mainContactosRepository, DireccionesRepository mainDireccionesRepository) {
+            this.mainContactosRepository = mainContactosRepository;
+            this.contactosData = new MutableLiveData<>();
+            this.agregarEditarContacto = new MutableLiveData<>();
+            this.deleteContacto = new MutableLiveData<>();
+            //---------------------------------------------------
+            this.mainDireccionesRepository = mainDireccionesRepository;
+            this.direccionesData = new MutableLiveData<>();
+            this.agregarEditarDireccion = new MutableLiveData<>();
+            this.deleteDireccion = new MutableLiveData<>();
     }
 
     public MutableLiveData<List<Contactos>> obtenerContactos() {
@@ -57,5 +68,12 @@ public class ContactosViewModel extends ViewModel {
         deleteContacto.setValue(mainContactosRepository.eliminarContacto(idContacto));
     }
 
+    public void registrarActualizarDireccion(int tipo, Direcciones direccion,int idContacto) {
+        if (tipo == 1){
+            agregarEditarDireccion.setValue(new Pair<>(tipo,mainDireccionesRepository.actualizarDireccion(direccion,idContacto)));
+        }else{
+            agregarEditarDireccion.setValue(new Pair<>(tipo,mainDireccionesRepository.registrarDireccion(idContacto,direccion.getEstado(),direccion.getMunicipio(),direccion.getLocalidad(),direccion.getColonia(),direccion.getCalle(),direccion.getNumeroInterior())));
+        }
+    }
 }
 
